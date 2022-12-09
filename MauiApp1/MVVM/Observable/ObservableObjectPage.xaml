@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.MVVM.Observable.ObservableObjectPage"
+             xmlns:local="clr-namespace:MauiApp1.MVVM.Observable"
+             Title="ObservableObjectPage">
+    <!--<ContentPage.BindingContext>
+        --><!--<local:ObservableViewModel />-->
+        <!--<local:ObservableUser />--><!--
+        <local:ObservableTask />
+    </ContentPage.BindingContext>-->
+    <VerticalStackLayout Padding="10" Spacing="20">
+        <Label 
+            Text="{Binding Name, Source={x:Static local:ViewLocator.Model}}" 
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            FontSize="24"
+            TextColor="Blue">
+            <Label.BindingContext>
+                <local:ObservableViewModel />
+            </Label.BindingContext>
+        </Label>
+
+        <Button 
+            Command="{Binding ChangeNameCommand, Source={x:Static local:ViewLocator.Model}}" Text="Change Name" />
+
+        <Label 
+            Text="{Binding Name, Source={x:Static local:ViewLocator.User}}" 
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            FontSize="24"
+            TextColor="Red"/>
+
+        <Button
+            Command="{Binding ChangeNameCommand, Source={x:Static local:ViewLocator.User}}" Text="Change User Name" />
+
+        <Label
+            Text="{Binding RequestTask.Status, Source={x:Static local:ViewLocator.Task}}" 
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            FontSize="24"
+            TextColor="Black"/>
+
+        <Button
+            Command="{Binding DelayTaskCommand , Source={x:Static local:ViewLocator.Task}}"  Text="Task Execute" />
+
+
+        <Button BackgroundColor="Red"
+            Command="{Binding MoveCommand , Source={x:Static local:ViewLocator.Task}}"  Text="Task Navigation" />
+    </VerticalStackLayout>
+</ContentPage>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.Xaml.SpecifySize.MainPage"
+             Title="MainPage">
+    <!--<VerticalStackLayout>
+        --><!--<Label
+        Text="Hello"
+        BackgroundColor="Silver"
+        VerticalOptions="Center"
+        HorizontalOptions="Center" 
+        FontSize="40"/>--><!--
+        <Label
+        Text="Hello"
+        BackgroundColor="Silver"
+        VerticalOptions="Center"
+        HorizontalOptions="Center" 
+        WidthRequest="100"
+        HeightRequest="300"
+        FontSize="40"/>
+    </VerticalStackLayout>-->
+    <StackLayout>
+        <Label Text="Start" HorizontalOptions="Start" BackgroundColor="Silver" FontSize="40" />
+        <Label Text="Center" HorizontalOptions="Center" BackgroundColor="Silver"  FontSize="40" />
+        <Label Text="End" HorizontalOptions="End" BackgroundColor="Silver"  FontSize="40"/>
+        <Label Text="Fill" HorizontalOptions="Fill" BackgroundColor="Silver"  FontSize="40"/>
+    </StackLayout>
+</ContentPage>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.Behaviors.AttachedNumericValidationPage"
+             xmlns:local="clr-namespace:MauiApp1.Behaviors"
+             Title="AttachedNumericValidationPage">
+    <ContentPage.Resources>
+        <Style x:Key="NumericValidationStyle" TargetType="Entry">
+            <Style.Setters>
+                <Setter Property="local:AttachedNumericValidationBehavior.AttachBehavior" Value="true" />
+            </Style.Setters>
+        </Style>
+    </ContentPage.Resources>
+    <StackLayout Padding="10,60,10,0">
+        <Label Text="Red when the number isn't valid"
+               FontSize="12" />
+        <Entry Placeholder="Enter a System.Double"
+               local:AttachedNumericValidationBehavior.AttachBehavior="true" />
+        <Entry Placeholder="Enter a System.Double with style" TextColor="Blue"
+                Style="{StaticResource NumericValidationStyle}" />
+        <Entry Placeholder="Enter a System.Double" >
+            <Entry.Behaviors>
+                <local:NumericValidationBehavior />
+            </Entry.Behaviors>
+        </Entry>
+    </StackLayout>
+</ContentPage>

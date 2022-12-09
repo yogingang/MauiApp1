@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.MVVM.Commanding.AsyncIncrementCounterPage"
+             xmlns:local="clr-namespace:MauiApp1.MVVM.Commanding"
+             Title="AsyncIncrementCounterPage">
+    <ContentPage.BindingContext>
+        <local:IncrementCounterViewModel />
+    </ContentPage.BindingContext>
+    <VerticalStackLayout>
+        <Label Text="{Binding Counter}"/>
+        <Label Text="{Binding IncrementCounterCommandAsync.ExecutionTask.Status}"/>
+        <Button
+            Text="Click me!"
+            Command="{Binding IncrementCounterCommandAsync}"/>
+
+        <ActivityIndicator IsRunning="{Binding IncrementCounterCommandAsync.IsRunning}" />
+    </VerticalStackLayout>
+</ContentPage>

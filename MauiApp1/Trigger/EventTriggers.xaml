@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.Trigger.EventTriggers"
+             xmlns:local="clr-namespace:MauiApp1.Trigger"
+             Title="EventTriggers">
+    <VerticalStackLayout>
+        <Entry Placeholder="Enter text">
+            <Entry.Triggers>
+                <EventTrigger Event="TextChanged">
+                    <local:NumericValidationTriggerAction />
+                </EventTrigger>
+            </Entry.Triggers>
+        </Entry>
+    </VerticalStackLayout>
+</ContentPage>

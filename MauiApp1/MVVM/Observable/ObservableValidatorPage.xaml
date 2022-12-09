@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.MVVM.Observable.ObservableValidatorPage"
+             xmlns:local="clr-namespace:MauiApp1.MVVM.Observable"
+             Title="ObservableValidatorPage">
+    <ContentPage.BindingContext>
+        <local:ObservableValidatorViewModel />
+    </ContentPage.BindingContext>
+    <VerticalStackLayout Padding="10" Spacing="20">
+        <Entry 
+            Text="{Binding Name}" 
+            Placeholder="Enter your name"
+            PlaceholderColor="Black"
+            FontSize="16"
+            TextColor="Blue">
+        </Entry>
+        <Label 
+            Text="{Binding Message}" 
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            FontSize="16"
+            TextColor="Red">
+        </Label>
+
+        <Button 
+            Command="{Binding ChangeNameCommand}" Text="Change Name" />
+
+        <Entry 
+            Text="{Binding User.Name}" 
+            FontSize="24"
+            TextColor="Red"/>
+
+        <Button
+            Command="{Binding User.ChangeNameCommand}" Text="Change User Name" />
+
+    </VerticalStackLayout>
+</ContentPage>

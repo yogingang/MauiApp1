@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.DataTemplate.DataTemplateSelectorPage"
+             xmlns:local="clr-namespace:MauiApp1.DataTemplate"
+             Title="DataTemplate Selector Page">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="validPersonTemplate">
+                <Grid ColumnDefinitions="*,*,*" Padding="10,0,10,0">
+                    <Label Text="{Binding Name}" FontAttributes="Bold" TextColor="Blue" />
+                    <Label Grid.Column="1" Text="{Binding Age}" TextColor="Blue" />
+                    <Label Grid.Column="2" Text="{Binding Location}" HorizontalTextAlignment="End" TextColor="Blue" />
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="invalidPersonTemplate">
+                <Grid ColumnDefinitions="*,*,*" Padding="10,0,10,0">
+                    <Label Text="{Binding Name}" FontAttributes="Bold" TextColor="Red" />
+                    <Label Grid.Column="1" Text="{Binding Age}" TextColor="Red"/>
+                    <Label Grid.Column="2" Text="{Binding Location}" HorizontalTextAlignment="End"  TextColor="Red"/>
+                </Grid>
+            </DataTemplate>
+            <local:PersonDataTemplateSelector x:Key="personDataTemplateSelector"
+                                          ValidTemplate="{StaticResource validPersonTemplate}"
+                                          InvalidTemplate="{StaticResource invalidPersonTemplate}" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout>
+        <CollectionView x:Name="collectionView"
+                ItemTemplate="{StaticResource personDataTemplateSelector}" >
+
+            <CollectionView.ItemsSource>
+                <x:Array Type="{x:Type local:Person}">
+                    <local:Person Name="Steve" Age="15" Location="USA" />
+                    <local:Person Name="John" Age="37" Location="USA" />
+                    <local:Person Name="Tom" Age="8" Location="UK" />
+                    <local:Person Name="Lucas" Age="29" Location="Germany" />
+                    <local:Person Name="Tariq" Age="39" Location="UK" />
+                    <local:Person Name="Jane" Age="11" Location="USA" />
+                </x:Array>
+            </CollectionView.ItemsSource>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>

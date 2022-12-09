@@ -1,0 +1,108 @@
+﻿<?xml version = "1.0" encoding = "UTF-8" ?>
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MauiApp1"
+             x:Class="MauiApp1.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Color x:Key="bgColor">#C0C0C0</Color>
+            <Color x:Key="fgColor">#0000AD</Color>
+            <x:Double x:Key="fontSize">22</x:Double>
+            <Style x:Key="baseLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource fgColor}" />
+                <Setter Property="FontSize" Value="{StaticResource fontSize}" />
+            </Style>
+            <Style x:Key="infoLabelStyle" TargetType="Label" BasedOn="{StaticResource baseLabelStyle}">
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+            <ControlTemplate x:Key="FooterHeaderControlTemplate">
+                <!--<StackLayout BindingContext="{Binding Source={RelativeSource TemplatedParent}}">
+                    <Label Text="{Binding ButtonTitle,
+                                  StringFormat='ButtonTile value is {0}'}"/>
+                    <ContentPresenter />
+                    <Label Text="{Binding ButtonFooter,
+                        StringFormat='ButtonFooter value is {0}'}" />
+                </StackLayout>-->
+                <StackLayout>
+                    <Label Text="{Binding ButtonTitle,
+                                  Source={RelativeSource TemplatedParent},
+                                  StringFormat='ButtonTile value is {0}'}"/>
+
+                    <ContentPresenter />
+                    <Label Text="{TemplateBinding ButtonFooter,
+                        StringFormat='ButtonFooter value is {0}'}" />
+                </StackLayout>
+            </ControlTemplate>
+            <!-- DeviceStateTrigger demo -->
+            <Style x:Key="DeviceStateTriggerPageStyle"
+                   TargetType="ContentPage">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup>
+                            <VisualState x:Name="iOS">
+                                <VisualState.StateTriggers>
+                                    <DeviceStateTrigger Device="iOS" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor"
+                                            Value="Silver" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Android">
+                                <VisualState.StateTriggers>
+                                    <DeviceStateTrigger Device="Android" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor"
+                                            Value="#2196F3" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="UWP">
+                                <VisualState.StateTriggers>
+                                    <DeviceStateTrigger Device="UWP" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor"
+                                            Value="Aquamarine" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+
+            <!-- OrientationStateTrigger demo -->
+            <Style x:Key="OrientationStateTriggerPageStyle"
+               TargetType="ContentPage">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup>
+                            <VisualState x:Name="Portrait">
+                                <VisualState.StateTriggers>
+                                    <OrientationStateTrigger Orientation="Portrait" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor"
+                                            Value="Silver" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Landscape">
+                                <VisualState.StateTriggers>
+                                    <OrientationStateTrigger Orientation="Landscape" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor"
+                                            Value="White" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

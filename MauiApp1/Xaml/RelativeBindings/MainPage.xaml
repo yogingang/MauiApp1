@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.Xaml.RelativeBindings.MainPage"
+             Title="MainPage"
+             BindingContext="{Binding Source={RelativeSource Self}, Path=DefaultViewModel}">
+    
+    <StackLayout>
+        <BoxView Color="Red"
+         WidthRequest="200"
+         HeightRequest="{Binding Source={RelativeSource Self}, Path=WidthRequest}"
+         HorizontalOptions="Center" />
+
+        <ListView ItemsSource="{Binding Employees}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell TextColor="Black" Text="{Binding }" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Label Text="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=Title}" />
+    </StackLayout>
+
+</ContentPage>

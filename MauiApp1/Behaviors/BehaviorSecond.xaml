@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.Behaviors.BehaviorSecond"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:local="clr-namespace:MauiApp1.Behaviors"
+             x:DataType="local:BehaviorSecondViewModel"
+             Title="BehaviorSecondPage">
+    <ContentPage.BindingContext>
+        <local:BehaviorSecondViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <Style x:Key="InvalidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Red" />
+            <Setter Property="FontAttributes" Value="Italic" />
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style x:Key="ValidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Green" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="FontSize" Value="24"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="Blue" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="FontSize" Value="24"/>
+        </Style>
+    </ContentPage.Resources>
+    <VerticalStackLayout Spacing="10">
+        <Entry Placeholder="Start typing until MaxLength is reached..."
+           MaxLength="10">
+            <Entry.Behaviors>
+                <toolkit:MaxLengthReachedBehavior 
+                Command="{Binding MaxLengthReachedCommand}" />
+            </Entry.Behaviors>
+        </Entry>
+        <Label Text="{Binding Message}" />
+
+        <Entry 
+        IsPassword="True"
+        Placeholder="Password">
+
+            <Entry.Behaviors>
+                <toolkit:MultiValidationBehavior 
+                InvalidStyle="{StaticResource InvalidEntryStyle}"  
+                ValidStyle="{StaticResource ValidEntryStyle}"
+                Flags="ValidateOnValueChanged">
+
+                    <toolkit:CharactersValidationBehavior 
+                    x:Name="DigitValidation" 
+                    CharacterType="Digit" 
+                    MinimumCharacterTypeCount="1" 
+                    toolkit:MultiValidationBehavior.Error="1 digit" 
+                    RegexPattern="" />
+
+                    <toolkit:CharactersValidationBehavior 
+                    x:Name="UpperValidation" 
+                    CharacterType="UppercaseLetter" 
+                    MinimumCharacterTypeCount="1" 
+                    toolkit:MultiValidationBehavior.Error="1 upper case" 
+                    RegexPattern="" />
+
+                    <toolkit:CharactersValidationBehavior 
+                    x:Name="SymbolValidation" 
+                    CharacterType="NonAlphanumericSymbol" 
+                    MinimumCharacterTypeCount="1" 
+                    toolkit:MultiValidationBehavior.Error="1 symbol" 
+                    RegexPattern=""  />
+
+                    <toolkit:CharactersValidationBehavior 
+                    x:Name="AnyValidation" 
+                    CharacterType="Any" 
+                    MinimumCharacterTypeCount="8" 
+                    toolkit:MultiValidationBehavior.Error="8 characters" 
+                    RegexPattern="" />
+                </toolkit:MultiValidationBehavior>
+            </Entry.Behaviors>
+        </Entry>
+
+        <Entry Keyboard="Numeric"  Placeholder="NumericValidation">
+            <Entry.Behaviors>
+                <toolkit:NumericValidationBehavior 
+                InvalidStyle="{StaticResource InvalidEntryStyle}"
+                ValidStyle="{StaticResource ValidEntryStyle}"
+                Flags="ValidateOnValueChanged"
+                MinimumValue="1.0"
+                MaximumValue="100.0"
+                MaximumDecimalPlaces="2" />
+            </Entry.Behaviors>
+        </Entry>
+
+        <Label Text="The ProgressBarAnimationBehavior is a behavior that animates a ProgressBar" />
+        <Button Command="{Binding ExecuteCommand}" Text="Execute" />
+        <ProgressBar>
+            <ProgressBar.Behaviors>
+                <toolkit:ProgressBarAnimationBehavior
+                    x:Name="ProgressBarAnimationBehavior"
+                    Progress="{Binding Progress}"
+                    Length="250"/>
+            </ProgressBar.Behaviors>
+        </ProgressBar>
+
+
+        <Entry Placeholder="RequiredStringValidationBehavior">
+            <Entry.Behaviors>
+                <toolkit:RequiredStringValidationBehavior 
+                InvalidStyle="{StaticResource InvalidEntryStyle}"
+                ValidStyle="{StaticResource ValidEntryStyle}"
+                Flags="ValidateOnValueChanged"
+                RequiredString="012340"
+                    ExactMatch="False"/>
+            </Entry.Behaviors>
+        </Entry>
+
+    </VerticalStackLayout>
+</ContentPage>

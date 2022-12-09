@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.Behaviors.BehaviorThird"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:local="clr-namespace:MauiApp1.Behaviors"
+             x:DataType="local:BehaviorThirdViewModel"
+             Title="BehaviorThirdPage">
+    <ContentPage.BindingContext>
+        <local:BehaviorThirdViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <Style x:Key="InvalidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Red" />
+            <Setter Property="FontAttributes" Value="Italic" />
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
+        <Style x:Key="ValidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Green" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="Blue" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="FontSize" Value="24"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <VerticalStackLayout>
+        <Label Text="SetFocusOnEntryCompletedBehavior" FontSize="20" TextColor="Black"/>
+
+        <Entry
+			x:Name="Entry1"
+			toolkit:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference Entry2}"
+			Placeholder="Entry 1 (Tap `Next` or `Enter` or `Return` when finished)"
+			ReturnType="Next" />
+        <Entry
+			x:Name="Entry2"
+			toolkit:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference Entry3}"
+			Placeholder="Entry 2 (Tap `Next` or `Enter` or `Return` on the keyboard when finished)"
+			ReturnType="Next" />
+        <Entry
+			x:Name="Entry3"
+			toolkit:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference Entry4}"
+			Placeholder="Entry 3 (Tap `Next` or `Enter` or `Return` on the keyboard when finished)"
+			ReturnType="Next" />
+
+        <Entry x:Name="Entry4" Placeholder="Entry 4 (no next entry this time)" />
+
+        <Label Text="TextValidationBehavior" FontSize="20" TextColor="Black"/>
+        <Entry Placeholder="Enter Text">
+            <Entry.Behaviors>
+                <toolkit:TextValidationBehavior 
+                InvalidStyle="{StaticResource InvalidEntryStyle}"
+                ValidStyle="{StaticResource ValidEntryStyle}"
+                Flags="ValidateOnValueChanged"
+                MinimumLength="1"
+                MaximumLength="10" />
+            </Entry.Behaviors>
+        </Entry>
+
+        <Label Margin="0,10" Text="UriValidationBehavior" FontSize="20" TextColor="Black"/>
+        <Entry Placeholder="Enter Uri">
+            <Entry.Behaviors>
+                <toolkit:UriValidationBehavior 
+                InvalidStyle="{StaticResource InvalidEntryStyle}"
+                ValidStyle="{StaticResource ValidEntryStyle}"
+                Flags="ValidateOnValueChanged"
+                UriKind="RelativeOrAbsolute" />
+            </Entry.Behaviors>
+        </Entry>
+
+        <Label Margin="0,10" Text="UserStoppedTypingBehavior" FontSize="20" TextColor="Black"/>
+        <Entry Placeholder="Start typing when you stop the behavior will trigger...">
+            <Entry.Behaviors>
+                <toolkit:UserStoppedTypingBehavior 
+                        Command="{Binding SearchCommand}"
+                        StoppedTypingTimeThreshold="1000"
+                        MinimumLengthThreshold="3"
+                        ShouldDismissKeyboardAutomatically="True" />
+            </Entry.Behaviors>
+        </Entry>
+        <Label Text="{Binding Message}" />
+    </VerticalStackLayout>
+</ContentPage>

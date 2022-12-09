@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.ControlTemplate.Page"
+             xmlns:local ="clr-namespace:MauiApp1.ControlTemplate"
+             Title="ButtonViewPage"
+              >
+    <ContentPage.BindingContext>
+        <local:MyButtonContentChangeViewModel />
+    </ContentPage.BindingContext>
+    <StackLayout>
+        <!--<Label Text="Hello" TextColor="Red" FontSize="24" />-->
+
+        <local:MyButtonControl  Stroke="#C49B33"
+                                StrokeThickness="8"
+                                ButtonTitle="My Button" 
+                                ButtonFooter="야호"
+                                ButtonContent="가즈아!!" 
+                                ControlTemplate="{StaticResource FooterHeaderControlTemplate}"/>
+        
+        <local:MyButtonControl  Stroke="#C49B33"
+                                StrokeThickness="8"
+                                ButtonTitle="My Button" 
+                                ButtonFooter="{Binding Footer}"
+                                ButtonContent="{Binding Content}" 
+                                ControlTemplate="{StaticResource FooterHeaderControlTemplate}"/>
+
+        <Button Command="{Binding RuntimeChangeContentCommand}" Text="변경하자"/>
+    </StackLayout>
+
+</ContentPage>

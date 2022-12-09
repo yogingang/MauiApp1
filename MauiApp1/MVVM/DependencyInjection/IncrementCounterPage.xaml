@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.MVVM.DependencyInjection.IncrementCounterPage"
+             xmlns:local="clr-namespace:MauiApp1.MVVM.DependencyInjection"
+             Title="IncrementCounterPage">
+    <VerticalStackLayout>
+        <Label Text="{Binding Counter, Mode=OneWay}"/>
+        <Button
+                Text="Click me!"
+                Command="{Binding IncrementCounterCommand}"/>
+
+        <Label Text="{Binding Message, Mode=OneWay}"/>
+        <Button
+                Text="Change message"
+                Command="{Binding ChangeMessageCommand}"/>
+    </VerticalStackLayout>
+</ContentPage>
